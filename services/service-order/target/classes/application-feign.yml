@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+            connect-timeout: 1000
+            read-timeout: 2000
+          service-product:
+            logger-level: full
+            connect-timeout: 3000
+            read-timeout: 5000
+#            request-interceptors:
+#              - org/example/order/interceptor/XTokenRequestInterceptor
+           # retryer: feign.retry.Default,重新连接，默认5次
+    sentinel:
+      transport:
+        dashboard: http://localhost:8080
+      eager: true  # 饥饿加载（启动时立即初始化 Sentinel）
+      web-context-unify: false #链路分割，关闭上下文统一
+
+feign:
+  sentinel:
+    enabled: true
